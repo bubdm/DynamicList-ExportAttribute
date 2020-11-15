@@ -25,14 +25,14 @@ namespace GenericList
         {
             get
             {
-                if (index < 0 || index > list.Length)
+                if (index < 0 || index >= list.Length)
                     throw new IndexOutOfRangeException();
 
                 return list[index];
             }
             set
             {
-                if (index < 0 || index > list.Length)
+                if (index < 0 || index >= list.Length)
                     throw new IndexOutOfRangeException();
 
                 list[index] = value;
@@ -45,16 +45,17 @@ namespace GenericList
             list[list.Length - 1] = item;
         }
 
-        public bool Remove(T itemToRemove)
+        public void Remove(T itemToRemove)
         {
-            list = list.Where(val => !val.Equals(itemToRemove)).ToArray();
-            return true;
+            list = list.Where(item => !item.Equals(itemToRemove)).ToArray();
         }
 
-        public void RemoveAt(int index)
+        public void RemoveAt(int itemIndex)
         {
-            if (index < 0 || index > list.Length)
+            if (itemIndex < 0 || itemIndex >= list.Length)
                 throw new IndexOutOfRangeException();
+
+            list = list.Where((item, index) => index != itemIndex).ToArray();
         }
 
         public void Clear()
