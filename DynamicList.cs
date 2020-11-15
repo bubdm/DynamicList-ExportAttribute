@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GenericList
 {
+    [ExportClass]
     public class DynamicList<T> : IDynamicList<T>, IEnumerable
     {
         private T[] list;
@@ -11,6 +13,15 @@ namespace GenericList
         public DynamicList()
         {
             list = new T[0];
+        }
+
+        public DynamicList(IEnumerable<T> collection)
+        {
+            list = new T[0];
+            foreach(var item in collection)
+            {
+                this.Add(item);
+            }
         }
 
         public int Count
