@@ -12,7 +12,7 @@ namespace GenericList
         T this[int index]{ get; set; }
 
         void Add(T item);
-        bool Remove(T item);
+        void Remove(T item);
         void RemoveAt(int index);
         void Clear();
     }
